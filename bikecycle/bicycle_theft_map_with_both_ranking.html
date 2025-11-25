@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_2faa31b7c856d790067e03565fac2ed6 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+<div style="position: fixed; 
+            top: 10px; left: 10px; width: 280px; height: auto; max-height: 45vh; 
+            border: 2px solid #555; z-index: 9999; font-size: 14px;
+            background-color: white; opacity: 0.95; padding: 10px; 
+            overflow-y: auto; box-shadow: 3px 3px 5px rgba(0,0,0,0.3); font-family: Meiryo, sans-serif;">
+    <h4 style="margin: 0 0 10px 0; border-bottom: 1px solid #ccc;">🚨 上位 盗難件数ランキング (多い順)</h4>
+    <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr style="border-bottom: 1px solid #ccc;">
+                <th style="text-align: right; padding-bottom: 5px;">順位</th>
+                <th></th>
+                <th style="text-align: left; padding-bottom: 5px;">市区町村</th>
+                <th style="text-align: right; padding-bottom: 5px;">件数</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+    <tr onclick="zoomToCity('千葉県船橋市')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">1位</td>
+        <td style="width: 10%;"><span style="color: #a50026; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">船橋市</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">1251</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県市川市')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">2位</td>
+        <td style="width: 10%;"><span style="color: #fdb366; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">市川市</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">863</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県柏市')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">3位</td>
+        <td style="width: 10%;"><span style="color: #fff0a8; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">柏市</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">689</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県松戸市')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">4位</td>
+        <td style="width: 10%;"><span style="color: #fff3ad; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">松戸市</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">673</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県千葉市中央区')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">5位</td>
+        <td style="width: 10%;"><span style="color: #fff8b5; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">千葉市中央区</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">652</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県八千代市')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">6位</td>
+        <td style="width: 10%;"><span style="color: #cbe9f2; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">八千代市</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">451</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県習志野市')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">7位</td>
+        <td style="width: 10%;"><span style="color: #c7e7f1; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">習志野市</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">445</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県浦安市')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">8位</td>
+        <td style="width: 10%;"><span style="color: #c3e5f0; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">浦安市</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">432</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県野田市')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">9位</td>
+        <td style="width: 10%;"><span style="color: #a6d5e7; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">野田市</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">365</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県千葉市稲毛区')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">10位</td>
+        <td style="width: 10%;"><span style="color: #97c9e0; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">千葉市稲毛区</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">331</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県千葉市美浜区')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">11位</td>
+        <td style="width: 10%;"><span style="color: #94c7df; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">千葉市美浜区</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">326</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県千葉市若葉区')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">12位</td>
+        <td style="width: 10%;"><span style="color: #8ec2dc; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">千葉市若葉区</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">312</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県流山市')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">13位</td>
+        <td style="width: 10%;"><span style="color: #8abeda; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">流山市</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">301</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県千葉市花見川区')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">14位</td>
+        <td style="width: 10%;"><span style="color: #85bbd9; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">千葉市花見川区</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">290</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県市原市')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">15位</td>
+        <td style="width: 10%;"><span style="color: #7fb6d6; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">市原市</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">276</td>
+    </tr>
+    
+        </tbody>
+    </table>
+</div>
+    
+<div style="position: fixed; 
+            top: 50vh; left: 10px; width: 280px; height: auto; max-height: 45vh; 
+            border: 2px solid #555; z-index: 9999; font-size: 14px;
+            background-color: white; opacity: 0.95; padding: 10px; 
+            overflow-y: auto; box-shadow: 3px 3px 5px rgba(0,0,0,0.3); font-family: Meiryo, sans-serif;">
+    <h4 style="margin: 0 0 10px 0; border-bottom: 1px solid #ccc;">🟢 下位 盗難件数ランキング (少ない順)</h4>
+    <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr style="border-bottom: 1px solid #ccc;">
+                <th style="text-align: right; padding-bottom: 5px;">順位</th>
+                <th></th>
+                <th style="text-align: left; padding-bottom: 5px;">市区町村</th>
+                <th style="text-align: right; padding-bottom: 5px;">件数</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+    <tr onclick="zoomToCity('千葉県勝浦市')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">1位</td>
+        <td style="width: 10%;"><span style="color: #313695; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">勝浦市</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">1</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県御宿町')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">2位</td>
+        <td style="width: 10%;"><span style="color: #313695; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">御宿町</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">1</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県睦沢町')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">3位</td>
+        <td style="width: 10%;"><span style="color: #313695; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">睦沢町</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">1</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県神崎町')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">4位</td>
+        <td style="width: 10%;"><span style="color: #313695; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">神崎町</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">2</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県東庄町')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">5位</td>
+        <td style="width: 10%;"><span style="color: #313695; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">東庄町</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">3</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県九十九里町')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">6位</td>
+        <td style="width: 10%;"><span style="color: #313695; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">九十九里町</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">3</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県多古町')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">7位</td>
+        <td style="width: 10%;"><span style="color: #313695; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">多古町</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">3</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県鋸南町')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">8位</td>
+        <td style="width: 10%;"><span style="color: #313695; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">鋸南町</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">5</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県南房総市')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">9位</td>
+        <td style="width: 10%;"><span style="color: #323896; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">南房総市</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">8</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県長生村')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">10位</td>
+        <td style="width: 10%;"><span style="color: #323896; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">長生村</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">9</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県匝瑳市')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">11位</td>
+        <td style="width: 10%;"><span style="color: #323896; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">匝瑳市</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">9</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県横芝光町')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">12位</td>
+        <td style="width: 10%;"><span style="color: #333b97; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">横芝光町</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">11</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県栄町')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">13位</td>
+        <td style="width: 10%;"><span style="color: #333b97; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">栄町</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">14</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県いすみ市')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">14位</td>
+        <td style="width: 10%;"><span style="color: #333b97; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">いすみ市</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">15</td>
+    </tr>
+    
+    <tr onclick="zoomToCity('千葉県鴨川市')" style="cursor: pointer;" title="クリックで地図を移動">
+        <td style="text-align: right; width: 10%;">15位</td>
+        <td style="width: 10%;"><span style="color: #333d99; font-size: 20px;">●</span></td>
+        <td style="width: 50%; text-decoration: underline;">鴨川市</td>
+        <td style="text-align: right; font-weight: bold; width: 30%;">16</td>
+    </tr>
+    
+        </tbody>
+    </table>
+</div>
+    
+            <div class="folium-map" id="map_2faa31b7c856d790067e03565fac2ed6" ></div>
+        
+</body>
+<script>
+    
+    
+var cityCoords = {"\u5343\u8449\u770c\u5343\u8449\u5e02\u4e2d\u592e\u533a": [35.6088739, 140.1245426], "\u5343\u8449\u770c\u5343\u8449\u5e02\u7dd1\u533a": [35.5603761, 140.1763009], "\u5343\u8449\u770c\u7fd2\u5fd7\u91ce\u5e02": [35.6816753, 140.0272065], "\u5343\u8449\u770c\u8239\u6a4b\u5e02": [35.6945993, 139.9825365], "\u5343\u8449\u770c\u5e02\u5ddd\u5e02": [35.721634, 139.9309444], "\u5343\u8449\u770c\u6d66\u5b89\u5e02": [35.6539105, 139.902563], "\u5343\u8449\u770c\u677e\u6238\u5e02": [35.7879371, 139.903177], "\u5343\u8449\u770c\u91ce\u7530\u5e02": [35.9549076, 139.8748667], "\u5343\u8449\u770c\u67cf\u5e02": [35.8676218, 139.9756876], "\u5343\u8449\u770c\u516b\u8857\u5e02": [35.6658607, 140.3178646], "\u5343\u8449\u770c\u4f50\u5009\u5e02": [35.7234619, 140.2240158], "\u5343\u8449\u770c\u9152\u3005\u4e95\u753a": [35.7247139, 140.2694831], "\u5343\u8449\u770c\u6210\u7530\u5e02": [35.7767683, 140.3183376], "\u5343\u8449\u770c\u6804\u753a": [35.8410441, 140.2441238], "\u5343\u8449\u770c\u5bcc\u91cc\u5e02": [35.7268876, 140.3430548], "\u5343\u8449\u770c\u938c\u30b1\u8c37\u5e02": [35.7766455, 140.0007147], "\u5343\u8449\u770c\u5370\u897f\u5e02": [35.8322582, 140.1452981], "\u5343\u8449\u770c\u767d\u4e95\u5e02": [35.7914538, 140.0560632], "\u5343\u8449\u770c\u591a\u53e4\u753a": [35.7357344, 140.4677155], "\u5343\u8449\u770c\u9999\u53d6\u5e02": [35.8978273, 140.4992787], "\u5343\u8449\u770c\u6771\u5e84\u753a": [35.8371096, 140.6688917], "\u5343\u8449\u770c\u795e\u5d0e\u753a": [35.9016885, 140.4051129], "\u5343\u8449\u770c\u929a\u5b50\u5e02": [35.7345338, 140.8272667], "\u5343\u8449\u770c\u65ed\u5e02": [35.7204126, 140.6464527], "\u5343\u8449\u770c\u531d\u7473\u5e02": [35.70794, 140.5645144], "\u5343\u8449\u770c\u5c71\u6b66\u5e02": [35.602875, 140.4134292], "\u5343\u8449\u770c\u6a2a\u829d\u5149\u753a": [35.66582, 140.5048541], "\u5343\u8449\u770c\u5927\u7db2\u767d\u91cc\u5e02": [35.5216038, 140.3208929], "\u5343\u8449\u770c\u6771\u91d1\u5e02": [35.5600309, 140.3662589], "\u5343\u8449\u770c\u4e5d\u5341\u4e5d\u91cc\u753a": [35.5350845, 140.4402007], "\u5343\u8449\u770c\u4e00\u5bae\u753a": [35.3728017, 140.3686619], "\u5343\u8449\u770c\u8302\u539f\u5e02": [35.4285094, 140.2880753], "\u5343\u8449\u770c\u7766\u6ca2\u753a": [35.3610855, 140.3195026], "\u5343\u8449\u770c\u9577\u751f\u6751": [35.4122538, 140.3539519], "\u5343\u8449\u770c\u3044\u3059\u307f\u5e02": [35.2539394, 140.3849461], "\u5343\u8449\u770c\u5fa1\u5bbf\u753a": [35.1916611, 140.3487766], "\u5343\u8449\u770c\u52dd\u6d66\u5e02": [35.1521846, 140.3207449], "\u5343\u8449\u770c\u5e02\u539f\u5e02": [35.497775, 140.1156996], "\u5343\u8449\u770c\u6728\u66f4\u6d25\u5e02": [35.3810808, 139.9247334], "\u5343\u8449\u770c\u8896\u30b1\u6d66\u5e02": [35.4296688, 139.9544661], "\u5343\u8449\u770c\u541b\u6d25\u5e02": [35.3302375, 139.902551], "\u5343\u8449\u770c\u5bcc\u6d25\u5e02": [35.3039146, 139.8570499], "\u5343\u8449\u770c\u5357\u623f\u7dcf\u5e02": [35.0387486, 139.8371399], "\u5343\u8449\u770c\u92f8\u5357\u753a": [35.1111016, 139.8358187], "\u5343\u8449\u770c\u9928\u5c71\u5e02": [34.9965304, 139.8699838], "\u5343\u8449\u770c\u9d28\u5ddd\u5e02": [35.1140584, 140.098692], "\u5343\u8449\u770c\u5343\u8449\u5e02\u7a32\u6bdb\u533a": [35.6364339, 140.1071044], "\u5343\u8449\u770c\u5343\u8449\u5e02\u7f8e\u6d5c\u533a": [35.6404626, 140.0631558], "\u5343\u8449\u770c\u5343\u8449\u5e02\u82b1\u898b\u5ddd\u533a": [35.6626706, 140.068933], "\u5343\u8449\u770c\u516b\u5343\u4ee3\u5e02": [35.722537, 140.0995131], "\u5343\u8449\u770c\u6211\u5b6b\u5b50\u5e02": [35.863999, 140.0280653], "\u5343\u8449\u770c\u6d41\u5c71\u5e02": [35.8555836, 139.9027815], "\u5343\u8449\u770c\u5343\u8449\u5e02\u82e5\u8449\u533a": [35.6342554, 140.1558127], "\u5343\u8449\u770c\u56db\u8857\u9053\u5e02": [35.6696551, 140.1679445]};
+var map = null; 
+
+// Foliumの地図オブジェクト（m）がLeafletマップオブジェクトを参照するのを待つための処理
+// m は FoliumのPython変数名であり、HTML/JS上では `window.m` になることが期待される
+setTimeout(function() {
+    // 実際にFoliumが生成したLeafletマップインスタンスを取得
+    // Folium 0.12以降、地図オブジェクトは要素IDに基づいてグローバル変数としてアクセス可能
+    // ただし確実性を高めるため、setTimeoutで少し遅らせて参照を試みる
+    if (window.m) {
+        map = window.m;
+    } else {
+        // 代替策: グローバルスコープからLeafletマップインスタンスを検索
+        for (var key in window) {
+            if (window[key] && window[key]._leaflet_id && window[key].setView) {
+                map = window[key];
+                break;
+            }
+        }
+    }
+}, 300); // 300ミリ秒待機
+
+function zoomToCity(fullCityName) {
+    var coords = cityCoords[fullCityName];
+    if (coords && map) {
+        // Leafletの setView(LatLng, zoom) を使用
+        map.setView([coords[0], coords[1]], 13); // ズームレベルは13に固定
+    } else {
+        console.log("座標が見つからないか、地図がロードされていません: " + fullCityName);
+    }
+}
+    
+            var map_2faa31b7c856d790067e03565fac2ed6 = L.map(
+                "map_2faa31b7c856d790067e03565fac2ed6",
+                {
+                    center: [35.6047, 140.1238],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 10,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_5685d8552f45a6b4959a54c5a519f4f2 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_5685d8552f45a6b4959a54c5a519f4f2.addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+            var circle_marker_ecd308f1a9a5b4a99ea4fa10bb362493 = L.circleMarker(
+                [35.2539394, 140.3849461],
+                {"bubblingMouseEvents": true, "color": "#333b97", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#333b97", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_80a68372d51c5c85dacf7bff777fa116 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_e4c7155bc8bf7e1d1d87ccaa1747a2d6 = $(`<div id="html_e4c7155bc8bf7e1d1d87ccaa1747a2d6" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>いすみ市</b><br>             盗難件数: 15 件         </div>         </div>`)[0];
+                popup_80a68372d51c5c85dacf7bff777fa116.setContent(html_e4c7155bc8bf7e1d1d87ccaa1747a2d6);
+            
+        
+
+        circle_marker_ecd308f1a9a5b4a99ea4fa10bb362493.bindPopup(popup_80a68372d51c5c85dacf7bff777fa116)
+        ;
+
+        
+    
+    
+            var circle_marker_eadd313b0f8f096e0de6e9c95abbcae7 = L.circleMarker(
+                [35.3728017, 140.3686619],
+                {"bubblingMouseEvents": true, "color": "#34409a", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#34409a", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_5804d19573eadd3896de2b07620e91a1 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_85050df258702c5225cd9982be5cee97 = $(`<div id="html_85050df258702c5225cd9982be5cee97" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>一宮町</b><br>             盗難件数: 21 件         </div>         </div>`)[0];
+                popup_5804d19573eadd3896de2b07620e91a1.setContent(html_85050df258702c5225cd9982be5cee97);
+            
+        
+
+        circle_marker_eadd313b0f8f096e0de6e9c95abbcae7.bindPopup(popup_5804d19573eadd3896de2b07620e91a1)
+        ;
+
+        
+    
+    
+            var circle_marker_05afe4cbf123b90f21798424b899fe81 = L.circleMarker(
+                [35.5350845, 140.4402007],
+                {"bubblingMouseEvents": true, "color": "#313695", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#313695", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_dbc4cb7f528a7d5f062b59106650a175 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_dec86a55eb404278fac88bd609031919 = $(`<div id="html_dec86a55eb404278fac88bd609031919" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>九十九里町</b><br>             盗難件数: 3 件         </div>         </div>`)[0];
+                popup_dbc4cb7f528a7d5f062b59106650a175.setContent(html_dec86a55eb404278fac88bd609031919);
+            
+        
+
+        circle_marker_05afe4cbf123b90f21798424b899fe81.bindPopup(popup_dbc4cb7f528a7d5f062b59106650a175)
+        ;
+
+        
+    
+    
+            var circle_marker_cd0a813464a08e1ea6e3dcec3fe60ec6 = L.circleMarker(
+                [35.7234619, 140.2240158],
+                {"bubblingMouseEvents": true, "color": "#4a7ab7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4a7ab7", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_6a9dd125ca1fe5d5de06becb923ed4cd = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_ff1d5e2ce79379c776ef3f805d26a3ec = $(`<div id="html_ff1d5e2ce79379c776ef3f805d26a3ec" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>佐倉市</b><br>             盗難件数: 142 件         </div>         </div>`)[0];
+                popup_6a9dd125ca1fe5d5de06becb923ed4cd.setContent(html_ff1d5e2ce79379c776ef3f805d26a3ec);
+            
+        
+
+        circle_marker_cd0a813464a08e1ea6e3dcec3fe60ec6.bindPopup(popup_6a9dd125ca1fe5d5de06becb923ed4cd)
+        ;
+
+        
+    
+    
+            var circle_marker_61ff390d517f94df1b6e4ef935b94f7d = L.circleMarker(
+                [35.722537, 140.0995131],
+                {"bubblingMouseEvents": true, "color": "#cbe9f2", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#cbe9f2", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_10050c607ab18d73f365357b8d6f6704 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_b720122d83d47e95a01c8885a8e01315 = $(`<div id="html_b720122d83d47e95a01c8885a8e01315" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>八千代市</b><br>             盗難件数: 451 件         </div>         </div>`)[0];
+                popup_10050c607ab18d73f365357b8d6f6704.setContent(html_b720122d83d47e95a01c8885a8e01315);
+            
+        
+
+        circle_marker_61ff390d517f94df1b6e4ef935b94f7d.bindPopup(popup_10050c607ab18d73f365357b8d6f6704)
+        ;
+
+        
+    
+    
+            var circle_marker_53385590630b5a25a8710b4ab2f3e67a = L.circleMarker(
+                [35.6658607, 140.3178646],
+                {"bubblingMouseEvents": true, "color": "#436fb1", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#436fb1", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_eb933c9f2cba4d3d42d404787b5d664d = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_082384cef121d5912493919f9aa1c1ba = $(`<div id="html_082384cef121d5912493919f9aa1c1ba" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>八街市</b><br>             盗難件数: 114 件         </div>         </div>`)[0];
+                popup_eb933c9f2cba4d3d42d404787b5d664d.setContent(html_082384cef121d5912493919f9aa1c1ba);
+            
+        
+
+        circle_marker_53385590630b5a25a8710b4ab2f3e67a.bindPopup(popup_eb933c9f2cba4d3d42d404787b5d664d)
+        ;
+
+        
+    
+    
+            var circle_marker_d24d928552ad853bd4b212262e76e458 = L.circleMarker(
+                [35.1521846, 140.3207449],
+                {"bubblingMouseEvents": true, "color": "#313695", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#313695", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_7e8f8253d7443e382dae3fe50d46353f = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_52584a7e1df3eace1c13ecb81fddcc53 = $(`<div id="html_52584a7e1df3eace1c13ecb81fddcc53" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>勝浦市</b><br>             盗難件数: 1 件         </div>         </div>`)[0];
+                popup_7e8f8253d7443e382dae3fe50d46353f.setContent(html_52584a7e1df3eace1c13ecb81fddcc53);
+            
+        
+
+        circle_marker_d24d928552ad853bd4b212262e76e458.bindPopup(popup_7e8f8253d7443e382dae3fe50d46353f)
+        ;
+
+        
+    
+    
+            var circle_marker_f82e5f29c5b72455ec1822432d59988e = L.circleMarker(
+                [35.70794, 140.5645144],
+                {"bubblingMouseEvents": true, "color": "#323896", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#323896", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_38e7ca7bcc78300314978ebe1d1b1ce8 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_3c17ba6ee4e0db6a6f5417ee4128df76 = $(`<div id="html_3c17ba6ee4e0db6a6f5417ee4128df76" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>匝瑳市</b><br>             盗難件数: 9 件         </div>         </div>`)[0];
+                popup_38e7ca7bcc78300314978ebe1d1b1ce8.setContent(html_3c17ba6ee4e0db6a6f5417ee4128df76);
+            
+        
+
+        circle_marker_f82e5f29c5b72455ec1822432d59988e.bindPopup(popup_38e7ca7bcc78300314978ebe1d1b1ce8)
+        ;
+
+        
+    
+    
+            var circle_marker_913509bd616bd03bf6e523ccf8da876d = L.circleMarker(
+                [35.6088739, 140.1245426],
+                {"bubblingMouseEvents": true, "color": "#fff8b5", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fff8b5", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_70ebc6cc97ac5eb03a0c246654d763af = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_227b4c6d50a5d78802a21b1ef368980e = $(`<div id="html_227b4c6d50a5d78802a21b1ef368980e" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>千葉市中央区</b><br>             盗難件数: 652 件         </div>         </div>`)[0];
+                popup_70ebc6cc97ac5eb03a0c246654d763af.setContent(html_227b4c6d50a5d78802a21b1ef368980e);
+            
+        
+
+        circle_marker_913509bd616bd03bf6e523ccf8da876d.bindPopup(popup_70ebc6cc97ac5eb03a0c246654d763af)
+        ;
+
+        
+    
+    
+            var circle_marker_231c503eb65810b285ba5b6204dcf0ce = L.circleMarker(
+                [35.6364339, 140.1071044],
+                {"bubblingMouseEvents": true, "color": "#97c9e0", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#97c9e0", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_3f96b38c01552bd1610bf7b748443957 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_f97f649112c1a200e6f8cd94fd17779d = $(`<div id="html_f97f649112c1a200e6f8cd94fd17779d" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>千葉市稲毛区</b><br>             盗難件数: 331 件         </div>         </div>`)[0];
+                popup_3f96b38c01552bd1610bf7b748443957.setContent(html_f97f649112c1a200e6f8cd94fd17779d);
+            
+        
+
+        circle_marker_231c503eb65810b285ba5b6204dcf0ce.bindPopup(popup_3f96b38c01552bd1610bf7b748443957)
+        ;
+
+        
+    
+    
+            var circle_marker_316a586e6ae3194cb02e3cb29c8b9124 = L.circleMarker(
+                [35.5603761, 140.1763009],
+                {"bubblingMouseEvents": true, "color": "#659bc8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#659bc8", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_2322d3238a79fab6712a962fb44413e8 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_c3ee8eeaaa72caec62ff975fd98a3dae = $(`<div id="html_c3ee8eeaaa72caec62ff975fd98a3dae" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>千葉市緑区</b><br>             盗難件数: 213 件         </div>         </div>`)[0];
+                popup_2322d3238a79fab6712a962fb44413e8.setContent(html_c3ee8eeaaa72caec62ff975fd98a3dae);
+            
+        
+
+        circle_marker_316a586e6ae3194cb02e3cb29c8b9124.bindPopup(popup_2322d3238a79fab6712a962fb44413e8)
+        ;
+
+        
+    
+    
+            var circle_marker_774ab367a31ccae6b7ae9f42e73c9078 = L.circleMarker(
+                [35.6404626, 140.0631558],
+                {"bubblingMouseEvents": true, "color": "#94c7df", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#94c7df", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_005d66e2186a6b48ce5de02fcbaa6e1c = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_688ba9908ef53d80bbddf45e80b89853 = $(`<div id="html_688ba9908ef53d80bbddf45e80b89853" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>千葉市美浜区</b><br>             盗難件数: 326 件         </div>         </div>`)[0];
+                popup_005d66e2186a6b48ce5de02fcbaa6e1c.setContent(html_688ba9908ef53d80bbddf45e80b89853);
+            
+        
+
+        circle_marker_774ab367a31ccae6b7ae9f42e73c9078.bindPopup(popup_005d66e2186a6b48ce5de02fcbaa6e1c)
+        ;
+
+        
+    
+    
+            var circle_marker_61f00f1db546eddd1da3bedc25f27bc3 = L.circleMarker(
+                [35.6626706, 140.068933],
+                {"bubblingMouseEvents": true, "color": "#85bbd9", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#85bbd9", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_e0c28b84e7b8bb494f44b35462436200 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_2ff74e85d34d09ee79fa059801e0045c = $(`<div id="html_2ff74e85d34d09ee79fa059801e0045c" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>千葉市花見川区</b><br>             盗難件数: 290 件         </div>         </div>`)[0];
+                popup_e0c28b84e7b8bb494f44b35462436200.setContent(html_2ff74e85d34d09ee79fa059801e0045c);
+            
+        
+
+        circle_marker_61f00f1db546eddd1da3bedc25f27bc3.bindPopup(popup_e0c28b84e7b8bb494f44b35462436200)
+        ;
+
+        
+    
+    
+            var circle_marker_95fc0a4a4619467f2b02e5349e15e923 = L.circleMarker(
+                [35.6342554, 140.1558127],
+                {"bubblingMouseEvents": true, "color": "#8ec2dc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8ec2dc", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_9c3d672193d5e949c74762145c4de1c2 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_7cd39d959a3424e20cf7ac99b293c241 = $(`<div id="html_7cd39d959a3424e20cf7ac99b293c241" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>千葉市若葉区</b><br>             盗難件数: 312 件         </div>         </div>`)[0];
+                popup_9c3d672193d5e949c74762145c4de1c2.setContent(html_7cd39d959a3424e20cf7ac99b293c241);
+            
+        
+
+        circle_marker_95fc0a4a4619467f2b02e5349e15e923.bindPopup(popup_9c3d672193d5e949c74762145c4de1c2)
+        ;
+
+        
+    
+    
+            var circle_marker_1a0d4beb63c5e2a35dfa4034ec696e71 = L.circleMarker(
+                [35.0387486, 139.8371399],
+                {"bubblingMouseEvents": true, "color": "#323896", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#323896", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_ec1290135b5de4ab23fa2caedb29802d = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_4afb58b839dd8d93f953091368615eb3 = $(`<div id="html_4afb58b839dd8d93f953091368615eb3" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>南房総市</b><br>             盗難件数: 8 件         </div>         </div>`)[0];
+                popup_ec1290135b5de4ab23fa2caedb29802d.setContent(html_4afb58b839dd8d93f953091368615eb3);
+            
+        
+
+        circle_marker_1a0d4beb63c5e2a35dfa4034ec696e71.bindPopup(popup_ec1290135b5de4ab23fa2caedb29802d)
+        ;
+
+        
+    
+    
+            var circle_marker_fa3251617a45d94cf1c4fbc45e351915 = L.circleMarker(
+                [35.8322582, 140.1452981],
+                {"bubblingMouseEvents": true, "color": "#4471b2", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4471b2", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_55e7ce6163b51cf2daa450639e823c71 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_bd1c439f825dd84221df15b657b49170 = $(`<div id="html_bd1c439f825dd84221df15b657b49170" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>印西市</b><br>             盗難件数: 123 件         </div>         </div>`)[0];
+                popup_55e7ce6163b51cf2daa450639e823c71.setContent(html_bd1c439f825dd84221df15b657b49170);
+            
+        
+
+        circle_marker_fa3251617a45d94cf1c4fbc45e351915.bindPopup(popup_55e7ce6163b51cf2daa450639e823c71)
+        ;
+
+        
+    
+    
+            var circle_marker_646d1a032cb810a1b810b4d643aa9f1f = L.circleMarker(
+                [35.3302375, 139.902551],
+                {"bubblingMouseEvents": true, "color": "#3e5ea8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3e5ea8", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_368981042b6d97dc2406884f0701c949 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_eeeb558e17634da133d8efb609597c8b = $(`<div id="html_eeeb558e17634da133d8efb609597c8b" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>君津市</b><br>             盗難件数: 83 件         </div>         </div>`)[0];
+                popup_368981042b6d97dc2406884f0701c949.setContent(html_eeeb558e17634da133d8efb609597c8b);
+            
+        
+
+        circle_marker_646d1a032cb810a1b810b4d643aa9f1f.bindPopup(popup_368981042b6d97dc2406884f0701c949)
+        ;
+
+        
+    
+    
+            var circle_marker_fd04b29e696dbe73b569559ac8c25738 = L.circleMarker(
+                [35.6696551, 140.1679445],
+                {"bubblingMouseEvents": true, "color": "#5385bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#5385bd", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_a517fd138d6b88e9749856f1034ed806 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_7e51af02d9091d83c0c5611d833f2ee5 = $(`<div id="html_7e51af02d9091d83c0c5611d833f2ee5" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>四街道市</b><br>             盗難件数: 165 件         </div>         </div>`)[0];
+                popup_a517fd138d6b88e9749856f1034ed806.setContent(html_7e51af02d9091d83c0c5611d833f2ee5);
+            
+        
+
+        circle_marker_fd04b29e696dbe73b569559ac8c25738.bindPopup(popup_a517fd138d6b88e9749856f1034ed806)
+        ;
+
+        
+    
+    
+            var circle_marker_352b0078de5f6d0ca47949628841f862 = L.circleMarker(
+                [35.7357344, 140.4677155],
+                {"bubblingMouseEvents": true, "color": "#313695", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#313695", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_fa1360740cda5c60708e3d1b7b64b763 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_78804e2e1aeea409c39396b87cdfd4b4 = $(`<div id="html_78804e2e1aeea409c39396b87cdfd4b4" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>多古町</b><br>             盗難件数: 3 件         </div>         </div>`)[0];
+                popup_fa1360740cda5c60708e3d1b7b64b763.setContent(html_78804e2e1aeea409c39396b87cdfd4b4);
+            
+        
+
+        circle_marker_352b0078de5f6d0ca47949628841f862.bindPopup(popup_fa1360740cda5c60708e3d1b7b64b763)
+        ;
+
+        
+    
+    
+            var circle_marker_a8c47ae4c51ae195f72c2e0cd0027b0c = L.circleMarker(
+                [35.5216038, 140.3208929],
+                {"bubblingMouseEvents": true, "color": "#35429b", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#35429b", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_ce6739cfa404014b66be5ea9cdf26509 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_439cf93a27bc3069f15a3a00fad122a8 = $(`<div id="html_439cf93a27bc3069f15a3a00fad122a8" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>大網白里市</b><br>             盗難件数: 26 件         </div>         </div>`)[0];
+                popup_ce6739cfa404014b66be5ea9cdf26509.setContent(html_439cf93a27bc3069f15a3a00fad122a8);
+            
+        
+
+        circle_marker_a8c47ae4c51ae195f72c2e0cd0027b0c.bindPopup(popup_ce6739cfa404014b66be5ea9cdf26509)
+        ;
+
+        
+    
+    
+            var circle_marker_a85aa7c3c93efd74afe9e353fa642421 = L.circleMarker(
+                [35.3039146, 139.8570499],
+                {"bubblingMouseEvents": true, "color": "#374a9f", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#374a9f", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_153e1ed4dde2d25e5ba71e2302399aba = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_4a7b894748bf1a396cb17d9f7b9a19a5 = $(`<div id="html_4a7b894748bf1a396cb17d9f7b9a19a5" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>富津市</b><br>             盗難件数: 44 件         </div>         </div>`)[0];
+                popup_153e1ed4dde2d25e5ba71e2302399aba.setContent(html_4a7b894748bf1a396cb17d9f7b9a19a5);
+            
+        
+
+        circle_marker_a85aa7c3c93efd74afe9e353fa642421.bindPopup(popup_153e1ed4dde2d25e5ba71e2302399aba)
+        ;
+
+        
+    
+    
+            var circle_marker_dc82f1648064b1b0f8df5efe1239036f = L.circleMarker(
+                [35.7268876, 140.3430548],
+                {"bubblingMouseEvents": true, "color": "#35429b", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#35429b", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_a0e37034e455c011895d101176c5809b = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_5fa67ad5f1caa1f086ec22b2ec4b5b60 = $(`<div id="html_5fa67ad5f1caa1f086ec22b2ec4b5b60" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>富里市</b><br>             盗難件数: 30 件         </div>         </div>`)[0];
+                popup_a0e37034e455c011895d101176c5809b.setContent(html_5fa67ad5f1caa1f086ec22b2ec4b5b60);
+            
+        
+
+        circle_marker_dc82f1648064b1b0f8df5efe1239036f.bindPopup(popup_a0e37034e455c011895d101176c5809b)
+        ;
+
+        
+    
+    
+            var circle_marker_83fbba65c3b31ba9adfbf3522e12e81c = L.circleMarker(
+                [35.602875, 140.4134292],
+                {"bubblingMouseEvents": true, "color": "#34409a", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#34409a", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_413158ad2bc8c0d8a0732d1ecfaf166e = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_8cda06348465c1fedefdb3d11d6f8d38 = $(`<div id="html_8cda06348465c1fedefdb3d11d6f8d38" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>山武市</b><br>             盗難件数: 24 件         </div>         </div>`)[0];
+                popup_413158ad2bc8c0d8a0732d1ecfaf166e.setContent(html_8cda06348465c1fedefdb3d11d6f8d38);
+            
+        
+
+        circle_marker_83fbba65c3b31ba9adfbf3522e12e81c.bindPopup(popup_413158ad2bc8c0d8a0732d1ecfaf166e)
+        ;
+
+        
+    
+    
+            var circle_marker_310af78f4d1ffe4e2610febb3e267187 = L.circleMarker(
+                [35.497775, 140.1156996],
+                {"bubblingMouseEvents": true, "color": "#7fb6d6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#7fb6d6", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_9f8ae863c009213c6f2ca1d5d991d307 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_db0801c405e83179267b06064c972a42 = $(`<div id="html_db0801c405e83179267b06064c972a42" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>市原市</b><br>             盗難件数: 276 件         </div>         </div>`)[0];
+                popup_9f8ae863c009213c6f2ca1d5d991d307.setContent(html_db0801c405e83179267b06064c972a42);
+            
+        
+
+        circle_marker_310af78f4d1ffe4e2610febb3e267187.bindPopup(popup_9f8ae863c009213c6f2ca1d5d991d307)
+        ;
+
+        
+    
+    
+            var circle_marker_acd26b9946444cafe5e4add69d496730 = L.circleMarker(
+                [35.721634, 139.9309444],
+                {"bubblingMouseEvents": true, "color": "#fdb366", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fdb366", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_1abd1bf204ce6c35ef71e707944b9a97 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_e7f830bd77cd5d1ce6ce013247c00ebc = $(`<div id="html_e7f830bd77cd5d1ce6ce013247c00ebc" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>市川市</b><br>             盗難件数: 863 件         </div>         </div>`)[0];
+                popup_1abd1bf204ce6c35ef71e707944b9a97.setContent(html_e7f830bd77cd5d1ce6ce013247c00ebc);
+            
+        
+
+        circle_marker_acd26b9946444cafe5e4add69d496730.bindPopup(popup_1abd1bf204ce6c35ef71e707944b9a97)
+        ;
+
+        
+    
+    
+            var circle_marker_f940babd337eecef24714b0589c410a7 = L.circleMarker(
+                [35.1916611, 140.3487766],
+                {"bubblingMouseEvents": true, "color": "#313695", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#313695", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_5377834b3c7c615c2690d0187c9fabeb = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_abfe0986a348e202c6d9065af03b1915 = $(`<div id="html_abfe0986a348e202c6d9065af03b1915" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>御宿町</b><br>             盗難件数: 1 件         </div>         </div>`)[0];
+                popup_5377834b3c7c615c2690d0187c9fabeb.setContent(html_abfe0986a348e202c6d9065af03b1915);
+            
+        
+
+        circle_marker_f940babd337eecef24714b0589c410a7.bindPopup(popup_5377834b3c7c615c2690d0187c9fabeb)
+        ;
+
+        
+    
+    
+            var circle_marker_8bfce0c3bcbea7b313df39b5bd0ecb0c = L.circleMarker(
+                [35.7767683, 140.3183376],
+                {"bubblingMouseEvents": true, "color": "#6399c7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#6399c7", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_90266822a4e5fcba42e1ec7ecae66b80 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_2eb434c12b9ec80fe877a95a51f882bf = $(`<div id="html_2eb434c12b9ec80fe877a95a51f882bf" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>成田市</b><br>             盗難件数: 209 件         </div>         </div>`)[0];
+                popup_90266822a4e5fcba42e1ec7ecae66b80.setContent(html_2eb434c12b9ec80fe877a95a51f882bf);
+            
+        
+
+        circle_marker_8bfce0c3bcbea7b313df39b5bd0ecb0c.bindPopup(popup_90266822a4e5fcba42e1ec7ecae66b80)
+        ;
+
+        
+    
+    
+            var circle_marker_34b1101fea359d4f08588915daf621d9 = L.circleMarker(
+                [35.863999, 140.0280653],
+                {"bubblingMouseEvents": true, "color": "#426cb0", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#426cb0", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_25b7c1b9b5e00c0e93c417f222c4a385 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_3a181c3060481f6aa970065c453e702a = $(`<div id="html_3a181c3060481f6aa970065c453e702a" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>我孫子市</b><br>             盗難件数: 113 件         </div>         </div>`)[0];
+                popup_25b7c1b9b5e00c0e93c417f222c4a385.setContent(html_3a181c3060481f6aa970065c453e702a);
+            
+        
+
+        circle_marker_34b1101fea359d4f08588915daf621d9.bindPopup(popup_25b7c1b9b5e00c0e93c417f222c4a385)
+        ;
+
+        
+    
+    
+            var circle_marker_0f7c337f17f024065031d1b2d2014591 = L.circleMarker(
+                [35.7204126, 140.6464527],
+                {"bubblingMouseEvents": true, "color": "#3a54a4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3a54a4", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_0f0b8ee7eca208978c70b33e4e83874c = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_d39884b9b35e0f71c1f20705923d26d5 = $(`<div id="html_d39884b9b35e0f71c1f20705923d26d5" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>旭市</b><br>             盗難件数: 64 件         </div>         </div>`)[0];
+                popup_0f0b8ee7eca208978c70b33e4e83874c.setContent(html_d39884b9b35e0f71c1f20705923d26d5);
+            
+        
+
+        circle_marker_0f7c337f17f024065031d1b2d2014591.bindPopup(popup_0f0b8ee7eca208978c70b33e4e83874c)
+        ;
+
+        
+    
+    
+            var circle_marker_a2cf9ce4e127d3c52a32a9257ca4b274 = L.circleMarker(
+                [35.3810808, 139.9247334],
+                {"bubblingMouseEvents": true, "color": "#4f81ba", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4f81ba", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_4a97d08760bda95dc64152377f7f5a98 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_58e2b9f62a913447e2e7bad92aa5c8fd = $(`<div id="html_58e2b9f62a913447e2e7bad92aa5c8fd" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>木更津市</b><br>             盗難件数: 155 件         </div>         </div>`)[0];
+                popup_4a97d08760bda95dc64152377f7f5a98.setContent(html_58e2b9f62a913447e2e7bad92aa5c8fd);
+            
+        
+
+        circle_marker_a2cf9ce4e127d3c52a32a9257ca4b274.bindPopup(popup_4a97d08760bda95dc64152377f7f5a98)
+        ;
+
+        
+    
+    
+            var circle_marker_59c74e7d0b9f93ace875a97b184c3a62 = L.circleMarker(
+                [35.8371096, 140.6688917],
+                {"bubblingMouseEvents": true, "color": "#313695", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#313695", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_3ace391b4aea6a021b6750228288698e = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_29f70b504a7c8b67d7052536795cc2f8 = $(`<div id="html_29f70b504a7c8b67d7052536795cc2f8" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>東庄町</b><br>             盗難件数: 3 件         </div>         </div>`)[0];
+                popup_3ace391b4aea6a021b6750228288698e.setContent(html_29f70b504a7c8b67d7052536795cc2f8);
+            
+        
+
+        circle_marker_59c74e7d0b9f93ace875a97b184c3a62.bindPopup(popup_3ace391b4aea6a021b6750228288698e)
+        ;
+
+        
+    
+    
+            var circle_marker_67a9d30819bc7633e25009a28468cbce = L.circleMarker(
+                [35.5600309, 140.3662589],
+                {"bubblingMouseEvents": true, "color": "#4167ad", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4167ad", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_30e065d2c1207c309cefc403577a5193 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_8a0a631cdae6dbb0fa2a7b159f61a4ee = $(`<div id="html_8a0a631cdae6dbb0fa2a7b159f61a4ee" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>東金市</b><br>             盗難件数: 99 件         </div>         </div>`)[0];
+                popup_30e065d2c1207c309cefc403577a5193.setContent(html_8a0a631cdae6dbb0fa2a7b159f61a4ee);
+            
+        
+
+        circle_marker_67a9d30819bc7633e25009a28468cbce.bindPopup(popup_30e065d2c1207c309cefc403577a5193)
+        ;
+
+        
+    
+    
+            var circle_marker_03d377e76894a65890314fec4396f179 = L.circleMarker(
+                [35.7879371, 139.903177],
+                {"bubblingMouseEvents": true, "color": "#fff3ad", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fff3ad", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_f7b5dcfcfc01f9ffc8c4af56dcf12da5 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_8baa4f5f30aeb0ac58ee06cbdb0c6bf3 = $(`<div id="html_8baa4f5f30aeb0ac58ee06cbdb0c6bf3" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>松戸市</b><br>             盗難件数: 673 件         </div>         </div>`)[0];
+                popup_f7b5dcfcfc01f9ffc8c4af56dcf12da5.setContent(html_8baa4f5f30aeb0ac58ee06cbdb0c6bf3);
+            
+        
+
+        circle_marker_03d377e76894a65890314fec4396f179.bindPopup(popup_f7b5dcfcfc01f9ffc8c4af56dcf12da5)
+        ;
+
+        
+    
+    
+            var circle_marker_92cf7fd78c709ffeb84bb0f654909bba = L.circleMarker(
+                [35.8676218, 139.9756876],
+                {"bubblingMouseEvents": true, "color": "#fff0a8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fff0a8", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_b62800e25cde561f97be0094b32c14d7 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_dd1e3da5fa10dc948a964c135d47b0a5 = $(`<div id="html_dd1e3da5fa10dc948a964c135d47b0a5" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>柏市</b><br>             盗難件数: 689 件         </div>         </div>`)[0];
+                popup_b62800e25cde561f97be0094b32c14d7.setContent(html_dd1e3da5fa10dc948a964c135d47b0a5);
+            
+        
+
+        circle_marker_92cf7fd78c709ffeb84bb0f654909bba.bindPopup(popup_b62800e25cde561f97be0094b32c14d7)
+        ;
+
+        
+    
+    
+            var circle_marker_5b6dfcf820327aaf84e0583e923572a0 = L.circleMarker(
+                [35.8410441, 140.2441238],
+                {"bubblingMouseEvents": true, "color": "#333b97", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#333b97", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_7cd2d0c9f22c35247f88ac5aafca1ffc = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_69eb679084f3c893ee2d1c8a26ea6ed4 = $(`<div id="html_69eb679084f3c893ee2d1c8a26ea6ed4" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>栄町</b><br>             盗難件数: 14 件         </div>         </div>`)[0];
+                popup_7cd2d0c9f22c35247f88ac5aafca1ffc.setContent(html_69eb679084f3c893ee2d1c8a26ea6ed4);
+            
+        
+
+        circle_marker_5b6dfcf820327aaf84e0583e923572a0.bindPopup(popup_7cd2d0c9f22c35247f88ac5aafca1ffc)
+        ;
+
+        
+    
+    
+            var circle_marker_bcc1e8f97f5422f9b3e9f08cf8005968 = L.circleMarker(
+                [35.66582, 140.5048541],
+                {"bubblingMouseEvents": true, "color": "#333b97", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#333b97", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_5e2f1d8e7a52aef0582e87db611fa739 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_103be72d72a2193c5325e1144a49f5c1 = $(`<div id="html_103be72d72a2193c5325e1144a49f5c1" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>横芝光町</b><br>             盗難件数: 11 件         </div>         </div>`)[0];
+                popup_5e2f1d8e7a52aef0582e87db611fa739.setContent(html_103be72d72a2193c5325e1144a49f5c1);
+            
+        
+
+        circle_marker_bcc1e8f97f5422f9b3e9f08cf8005968.bindPopup(popup_5e2f1d8e7a52aef0582e87db611fa739)
+        ;
+
+        
+    
+    
+            var circle_marker_3ce3c6e2858fe7249cdcc50c1eded49c = L.circleMarker(
+                [35.8555836, 139.9027815],
+                {"bubblingMouseEvents": true, "color": "#8abeda", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8abeda", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_00387e93c4289d0cb978bb8c8fc98b17 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_e609d7295f9329b954f1654002c55970 = $(`<div id="html_e609d7295f9329b954f1654002c55970" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>流山市</b><br>             盗難件数: 301 件         </div>         </div>`)[0];
+                popup_00387e93c4289d0cb978bb8c8fc98b17.setContent(html_e609d7295f9329b954f1654002c55970);
+            
+        
+
+        circle_marker_3ce3c6e2858fe7249cdcc50c1eded49c.bindPopup(popup_00387e93c4289d0cb978bb8c8fc98b17)
+        ;
+
+        
+    
+    
+            var circle_marker_f89cea13bc5e8fdc5e263df75f76706d = L.circleMarker(
+                [35.6539105, 139.902563],
+                {"bubblingMouseEvents": true, "color": "#c3e5f0", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#c3e5f0", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_4c4f546836f48017c96f95500f3527b9 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_188ce412be1d438e461001edd02a66b5 = $(`<div id="html_188ce412be1d438e461001edd02a66b5" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>浦安市</b><br>             盗難件数: 432 件         </div>         </div>`)[0];
+                popup_4c4f546836f48017c96f95500f3527b9.setContent(html_188ce412be1d438e461001edd02a66b5);
+            
+        
+
+        circle_marker_f89cea13bc5e8fdc5e263df75f76706d.bindPopup(popup_4c4f546836f48017c96f95500f3527b9)
+        ;
+
+        
+    
+    
+            var circle_marker_6168882415c335a04dbf310e5efa9d4b = L.circleMarker(
+                [35.7914538, 140.0560632],
+                {"bubblingMouseEvents": true, "color": "#3a54a4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3a54a4", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_1bf8a07e6a1dfe8ce86199ecf356aac8 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_36d2db618868515a9a7925ddddaa562a = $(`<div id="html_36d2db618868515a9a7925ddddaa562a" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>白井市</b><br>             盗難件数: 63 件         </div>         </div>`)[0];
+                popup_1bf8a07e6a1dfe8ce86199ecf356aac8.setContent(html_36d2db618868515a9a7925ddddaa562a);
+            
+        
+
+        circle_marker_6168882415c335a04dbf310e5efa9d4b.bindPopup(popup_1bf8a07e6a1dfe8ce86199ecf356aac8)
+        ;
+
+        
+    
+    
+            var circle_marker_3a8482363f9b5090f5f61f38ffa4cb9a = L.circleMarker(
+                [35.3610855, 140.3195026],
+                {"bubblingMouseEvents": true, "color": "#313695", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#313695", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_c72da6f1e9e8a18bf65a6691b850676e = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_8f2b0c14c27d2d85d8d0fdb13053e835 = $(`<div id="html_8f2b0c14c27d2d85d8d0fdb13053e835" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>睦沢町</b><br>             盗難件数: 1 件         </div>         </div>`)[0];
+                popup_c72da6f1e9e8a18bf65a6691b850676e.setContent(html_8f2b0c14c27d2d85d8d0fdb13053e835);
+            
+        
+
+        circle_marker_3a8482363f9b5090f5f61f38ffa4cb9a.bindPopup(popup_c72da6f1e9e8a18bf65a6691b850676e)
+        ;
+
+        
+    
+    
+            var circle_marker_3a6efc553f2eddf205a6bcee397aabf8 = L.circleMarker(
+                [35.9016885, 140.4051129],
+                {"bubblingMouseEvents": true, "color": "#313695", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#313695", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_00137a4e2a265110358dc71a8031f341 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_fd01234f158db62c14067797099934f5 = $(`<div id="html_fd01234f158db62c14067797099934f5" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>神崎町</b><br>             盗難件数: 2 件         </div>         </div>`)[0];
+                popup_00137a4e2a265110358dc71a8031f341.setContent(html_fd01234f158db62c14067797099934f5);
+            
+        
+
+        circle_marker_3a6efc553f2eddf205a6bcee397aabf8.bindPopup(popup_00137a4e2a265110358dc71a8031f341)
+        ;
+
+        
+    
+    
+            var circle_marker_c034d47aea4b02428e8a2ced89227b48 = L.circleMarker(
+                [35.6816753, 140.0272065],
+                {"bubblingMouseEvents": true, "color": "#c7e7f1", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#c7e7f1", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_d0b94661b7a622e919e95e0978c953d8 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_47e3408440cf72216f356b26979f347e = $(`<div id="html_47e3408440cf72216f356b26979f347e" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>習志野市</b><br>             盗難件数: 445 件         </div>         </div>`)[0];
+                popup_d0b94661b7a622e919e95e0978c953d8.setContent(html_47e3408440cf72216f356b26979f347e);
+            
+        
+
+        circle_marker_c034d47aea4b02428e8a2ced89227b48.bindPopup(popup_d0b94661b7a622e919e95e0978c953d8)
+        ;
+
+        
+    
+    
+            var circle_marker_04a1f3b27606abec853cfd4348689ba3 = L.circleMarker(
+                [35.6945993, 139.9825365],
+                {"bubblingMouseEvents": true, "color": "#a50026", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#a50026", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_ed7a16be4e4f0bd61f3da092051c89a7 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_f9db2bc6f2be58e97efe02703aed4a35 = $(`<div id="html_f9db2bc6f2be58e97efe02703aed4a35" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>船橋市</b><br>             盗難件数: 1251 件         </div>         </div>`)[0];
+                popup_ed7a16be4e4f0bd61f3da092051c89a7.setContent(html_f9db2bc6f2be58e97efe02703aed4a35);
+            
+        
+
+        circle_marker_04a1f3b27606abec853cfd4348689ba3.bindPopup(popup_ed7a16be4e4f0bd61f3da092051c89a7)
+        ;
+
+        
+    
+    
+            var circle_marker_7e95e63df869538c1b7a38f924b899d0 = L.circleMarker(
+                [35.4285094, 140.2880753],
+                {"bubblingMouseEvents": true, "color": "#3f62ab", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3f62ab", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_671b237800752702b27b42aabd7f2bb2 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_26b6533f3771d5eba66912b1b5da5414 = $(`<div id="html_26b6533f3771d5eba66912b1b5da5414" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>茂原市</b><br>             盗難件数: 93 件         </div>         </div>`)[0];
+                popup_671b237800752702b27b42aabd7f2bb2.setContent(html_26b6533f3771d5eba66912b1b5da5414);
+            
+        
+
+        circle_marker_7e95e63df869538c1b7a38f924b899d0.bindPopup(popup_671b237800752702b27b42aabd7f2bb2)
+        ;
+
+        
+    
+    
+            var circle_marker_72515ca44bb6d16a02d9fd5195a02685 = L.circleMarker(
+                [35.4296688, 139.9544661],
+                {"bubblingMouseEvents": true, "color": "#374a9f", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#374a9f", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_b47b39a21e3445b47d2bd2467be0df69 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_28574362d00ec74115bc7b506ba824c6 = $(`<div id="html_28574362d00ec74115bc7b506ba824c6" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>袖ケ浦市</b><br>             盗難件数: 42 件         </div>         </div>`)[0];
+                popup_b47b39a21e3445b47d2bd2467be0df69.setContent(html_28574362d00ec74115bc7b506ba824c6);
+            
+        
+
+        circle_marker_72515ca44bb6d16a02d9fd5195a02685.bindPopup(popup_b47b39a21e3445b47d2bd2467be0df69)
+        ;
+
+        
+    
+    
+            var circle_marker_5e9534a8cb96d91253d3f396aa946f4c = L.circleMarker(
+                [35.7247139, 140.2694831],
+                {"bubblingMouseEvents": true, "color": "#35429b", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#35429b", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_5078db05816beb8d3fcdb4ad4fbc1223 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_482f06f859605bc27163d2b9892ad696 = $(`<div id="html_482f06f859605bc27163d2b9892ad696" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>酒々井町</b><br>             盗難件数: 29 件         </div>         </div>`)[0];
+                popup_5078db05816beb8d3fcdb4ad4fbc1223.setContent(html_482f06f859605bc27163d2b9892ad696);
+            
+        
+
+        circle_marker_5e9534a8cb96d91253d3f396aa946f4c.bindPopup(popup_5078db05816beb8d3fcdb4ad4fbc1223)
+        ;
+
+        
+    
+    
+            var circle_marker_5de0fd946f820590891bb04c2839bde6 = L.circleMarker(
+                [35.9549076, 139.8748667],
+                {"bubblingMouseEvents": true, "color": "#a6d5e7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#a6d5e7", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_731d9e37c3d916f921d25b73298d9261 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_c34c88b9c6a9dcd677a02d43576cf8eb = $(`<div id="html_c34c88b9c6a9dcd677a02d43576cf8eb" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>野田市</b><br>             盗難件数: 365 件         </div>         </div>`)[0];
+                popup_731d9e37c3d916f921d25b73298d9261.setContent(html_c34c88b9c6a9dcd677a02d43576cf8eb);
+            
+        
+
+        circle_marker_5de0fd946f820590891bb04c2839bde6.bindPopup(popup_731d9e37c3d916f921d25b73298d9261)
+        ;
+
+        
+    
+    
+            var circle_marker_7df3c692862d207776752c2e518c9d06 = L.circleMarker(
+                [35.7345338, 140.8272667],
+                {"bubblingMouseEvents": true, "color": "#35429b", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#35429b", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_0e38a0b29f6d46e6fd3c4dee4e0e3518 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_709ea177d8ab70b951d6515846065435 = $(`<div id="html_709ea177d8ab70b951d6515846065435" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>銚子市</b><br>             盗難件数: 30 件         </div>         </div>`)[0];
+                popup_0e38a0b29f6d46e6fd3c4dee4e0e3518.setContent(html_709ea177d8ab70b951d6515846065435);
+            
+        
+
+        circle_marker_7df3c692862d207776752c2e518c9d06.bindPopup(popup_0e38a0b29f6d46e6fd3c4dee4e0e3518)
+        ;
+
+        
+    
+    
+            var circle_marker_abb403214a8d6fc6ab3dfa281b18b180 = L.circleMarker(
+                [35.1111016, 139.8358187],
+                {"bubblingMouseEvents": true, "color": "#313695", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#313695", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_328782cca605f3474ad5029c3ff5e3c0 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_8e7ba564203a1b68b44f5524fb890f64 = $(`<div id="html_8e7ba564203a1b68b44f5524fb890f64" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>鋸南町</b><br>             盗難件数: 5 件         </div>         </div>`)[0];
+                popup_328782cca605f3474ad5029c3ff5e3c0.setContent(html_8e7ba564203a1b68b44f5524fb890f64);
+            
+        
+
+        circle_marker_abb403214a8d6fc6ab3dfa281b18b180.bindPopup(popup_328782cca605f3474ad5029c3ff5e3c0)
+        ;
+
+        
+    
+    
+            var circle_marker_9baa4e06c8ed6e4615cf3668bf2b097c = L.circleMarker(
+                [35.7766455, 140.0007147],
+                {"bubblingMouseEvents": true, "color": "#4a7ab7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4a7ab7", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_644bc016dd87dc34caba93e46b33b4ec = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_65fd94a1f7dacb8321caa762fd991a63 = $(`<div id="html_65fd94a1f7dacb8321caa762fd991a63" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>鎌ケ谷市</b><br>             盗難件数: 138 件         </div>         </div>`)[0];
+                popup_644bc016dd87dc34caba93e46b33b4ec.setContent(html_65fd94a1f7dacb8321caa762fd991a63);
+            
+        
+
+        circle_marker_9baa4e06c8ed6e4615cf3668bf2b097c.bindPopup(popup_644bc016dd87dc34caba93e46b33b4ec)
+        ;
+
+        
+    
+    
+            var circle_marker_b81de045e57db626be84308cb72fdc19 = L.circleMarker(
+                [35.4122538, 140.3539519],
+                {"bubblingMouseEvents": true, "color": "#323896", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#323896", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_79efe06fb754a8edb3c131886c062158 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_ddd1043178bb31c8db0964c0e0f32998 = $(`<div id="html_ddd1043178bb31c8db0964c0e0f32998" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>長生村</b><br>             盗難件数: 9 件         </div>         </div>`)[0];
+                popup_79efe06fb754a8edb3c131886c062158.setContent(html_ddd1043178bb31c8db0964c0e0f32998);
+            
+        
+
+        circle_marker_b81de045e57db626be84308cb72fdc19.bindPopup(popup_79efe06fb754a8edb3c131886c062158)
+        ;
+
+        
+    
+    
+            var circle_marker_796e2e9e16445989e2e285428692fe18 = L.circleMarker(
+                [34.9965304, 139.8699838],
+                {"bubblingMouseEvents": true, "color": "#394fa1", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#394fa1", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_210adf2be7a8480048c8835f5424a3a2 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_60f7c7de3b0082c68ab6d1e23cd94306 = $(`<div id="html_60f7c7de3b0082c68ab6d1e23cd94306" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>館山市</b><br>             盗難件数: 51 件         </div>         </div>`)[0];
+                popup_210adf2be7a8480048c8835f5424a3a2.setContent(html_60f7c7de3b0082c68ab6d1e23cd94306);
+            
+        
+
+        circle_marker_796e2e9e16445989e2e285428692fe18.bindPopup(popup_210adf2be7a8480048c8835f5424a3a2)
+        ;
+
+        
+    
+    
+            var circle_marker_cf41e738c67b8eecc6e8e576ba2a8d54 = L.circleMarker(
+                [35.8978273, 140.4992787],
+                {"bubblingMouseEvents": true, "color": "#34409a", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#34409a", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_69078655933153a13e1c5ee51b72be2a = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_74744ccd3deee8b68cf36105f9060136 = $(`<div id="html_74744ccd3deee8b68cf36105f9060136" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>香取市</b><br>             盗難件数: 21 件         </div>         </div>`)[0];
+                popup_69078655933153a13e1c5ee51b72be2a.setContent(html_74744ccd3deee8b68cf36105f9060136);
+            
+        
+
+        circle_marker_cf41e738c67b8eecc6e8e576ba2a8d54.bindPopup(popup_69078655933153a13e1c5ee51b72be2a)
+        ;
+
+        
+    
+    
+            var circle_marker_4d56dd49b988a0e6eff6b56ef5c8aa53 = L.circleMarker(
+                [35.1140584, 140.098692],
+                {"bubblingMouseEvents": true, "color": "#333d99", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#333d99", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_2faa31b7c856d790067e03565fac2ed6);
+        
+    
+        var popup_859255bb605d9b003217e2e454f39747 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_846a3baaaf0929171e8227628a1c7392 = $(`<div id="html_846a3baaaf0929171e8227628a1c7392" style="width: 100.0%; height: 100.0%;">         <div style="writing-mode: horizontal-tb; font-family: Meiryo, sans-serif;">             📍 <b>鴨川市</b><br>             盗難件数: 16 件         </div>         </div>`)[0];
+                popup_859255bb605d9b003217e2e454f39747.setContent(html_846a3baaaf0929171e8227628a1c7392);
+            
+        
+
+        circle_marker_4d56dd49b988a0e6eff6b56ef5c8aa53.bindPopup(popup_859255bb605d9b003217e2e454f39747)
+        ;
+
+        
+    
+</script>
+</html>
